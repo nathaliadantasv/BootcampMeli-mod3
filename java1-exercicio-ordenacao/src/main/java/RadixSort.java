@@ -1,7 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
 
 public class RadixSort {
 
@@ -28,30 +27,165 @@ public class RadixSort {
             }
         }
 
-        String arrayBD[][] = ordenaArray(iArrConv, tamanho, 1);
+        List<String>[] resultado = ordenaArray(iArrConv, tamanho);
 
-        String[] arrayStr = new String[iArrConv.length];
+        List<String> aux = new ArrayList<>();
 
-        for(String []strArray : arrayBD){
 
-            for(String str : strArray){
-                arrayStr[arrayStr.length] = str;
-            }
+        for (int j = 0; j < resultado.length; j++){
+           List<String> l = resultado[j];
+           for (int i = 0; i < l.size(); i++){
+               aux.add(l.get(i));
+           }
         }
 
-        arrayBD = ordenaArray(iArrConv, tamanho, 2);
+        //System.out.println(aux.toString());
 
-        int[] arrayInt = new int[iArrConv.length];
-
-        for(String []strArray : arrayBD){
-
-            for(String str : strArray){
-                arrayInt[arrayInt.length] = Integer.valueOf(str);
-            }
+        int[] teste = new int[aux.size()];
+        for(int i=0; i< aux.size(); i++){
+            teste[i] = Integer.parseInt(aux.get(i));
         }
 
-        return  arrayInt;
+        return teste;
+
     }
+
+    public static List<String>[] ordenaArray(String[] iArrConv, int tamanho){
+
+        List<String>[] res = new List[10];
+        ArrayList<String> aux = new ArrayList<String>();
+
+        List<String> lista0 = new ArrayList<String>();
+        List<String> lista1 = new ArrayList<String>();
+        List<String> lista2 = new ArrayList<String>();
+        List<String> lista3 = new ArrayList<String>();
+        List<String> lista4 = new ArrayList<String>();
+        List<String> lista5 = new ArrayList<String>();
+        List<String> lista6 = new ArrayList<String>();
+        List<String> lista7 = new ArrayList<String>();
+        List<String> lista8 = new ArrayList<String>();
+        List<String> lista9 = new ArrayList<String>();
+
+        for (int i = 1; i <= tamanho; i++) {
+           lista0.clear();
+           lista1.clear();
+           lista2.clear();
+           lista3.clear();
+           lista4.clear();
+           lista5.clear();
+           lista6.clear();
+           lista7.clear();
+           lista8.clear();
+           lista9.clear();
+
+           if(i == 1){
+               aux = new ArrayList<>(Arrays.asList(iArrConv));
+           }
+
+            for (String str : aux) {
+                char digito = str.charAt(str.length() - i);
+                switch (digito) {
+                    case '0':
+                        lista0.add(str);
+                        break;
+                    case '1':
+                        lista1.add(str);
+                        break;
+                    case '2':
+                        lista2.add(str);
+                        break;
+                    case '3':
+                        lista3.add(str);
+                        break;
+                    case '4':
+                        lista4.add(str);
+                        break;
+                    case '5':
+                        lista5.add(str);
+                        break;
+                    case '6':
+                        lista6.add(str);
+                        break;
+                    case '7':
+                        lista7.add(str);
+                        break;
+                    case '8':
+                        lista8.add(str);
+                        break;
+                    case '9':
+                        lista9.add(str);
+                        break;
+                }
+            }
+
+            aux.clear();
+
+            if(lista0.size() > 0){
+                for(String s: lista0){
+                    aux.add(s);
+                }
+            }
+            if(lista1.size() > 0){
+                for(String s: lista1){
+                    aux.add(s);
+                }
+            }
+            if(lista2.size() > 0){
+                for(String s: lista2){
+                    aux.add(s);
+                }
+            }
+            if(lista3.size() > 0){
+                for(String s: lista3){
+                    aux.add(s);
+                }
+            }
+            if(lista4.size() > 0){
+                for(String s: lista4){
+                    aux.add(s);
+                }
+            }
+            if(lista5.size() > 0){
+                for(String s: lista5){
+                    aux.add(s);
+                }
+            }
+            if(lista6.size() > 0){
+                for(String s: lista6){
+                    aux.add(s);
+                }
+            }
+            if(lista7.size() > 0){
+                for(String s: lista7){
+                    aux.add(s);
+                }
+            }
+            if(lista8.size() > 0){
+                for(String s: lista8){
+                    aux.add(s);
+                }
+            }
+            if(lista9.size() > 0){
+                for(String s: lista9){
+                    aux.add(s);
+                }
+            }
+        }
+
+        res[0]=(lista0);
+        res[1]=(lista1);
+        res[2]=(lista2);
+        res[3]=(lista3);
+        res[4]=(lista4);
+        res[5]=(lista5);
+        res[6]=(lista6);
+        res[7]=(lista7);
+        res[8]=(lista8);
+        res[9]=(lista9);
+
+        return res;
+    }
+
 
     public static void main(String[] args) {
         int iArr[] = {16223, 898, 13, 906, 235, 23, 9, 1532, 6388, 2511, 8};
@@ -59,50 +193,7 @@ public class RadixSort {
         iArr = radixSort(iArr);
 
         for (int i : iArr) {
-            System.out.print(i + "");
+            System.out.print(i + " ");
         }
-    }
-
-
-    public static String[][] ordenaArray(String[] iArrConv, int tamanho, int posicao){
-
-        String arrayBD[][] = new String[10][];
-
-        for (String str : iArrConv) {
-            switch (str.charAt(tamanho - posicao)) {
-                case '0':
-                    arrayBD[0][arrayBD[0].length] = str;
-                    break;
-                case '1':
-                    arrayBD[1][arrayBD[0].length] = str;
-                    break;
-                case '2':
-                    arrayBD[2][arrayBD[0].length] = str;
-                    break;
-                case '3':
-                    arrayBD[3][arrayBD[0].length] = str;
-                    break;
-                case '4':
-                    arrayBD[4][arrayBD[0].length] = str;
-                    break;
-                case '5':
-                    arrayBD[5][arrayBD[0].length] = str;
-                    break;
-                case '6':
-                    arrayBD[6][arrayBD[0].length] = str;
-                    break;
-                case '7':
-                    arrayBD[7][arrayBD[0].length] = str;
-                    break;
-                case '8':
-                    arrayBD[8][arrayBD[0].length] = str;
-                    break;
-                case '9':
-                    arrayBD[9][arrayBD[0].length] = str;
-                    break;
-            }
-        }
-
-        return arrayBD;
     }
 }

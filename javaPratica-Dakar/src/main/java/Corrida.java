@@ -63,10 +63,12 @@ public class Corrida {
         return veiculo;
     }
 
-    public void socorrerCarro(String documento){
+    public void socorrerCarro(Carro carro){
+        salvaVidaCarro.socorrer(carro);
     }
 
-    public void socorrerMoto(String documento){
+    public void socorrerMoto(Moto moto){
+        salvaVidaMoto.socorrer(moto);
     }
 
 }
